@@ -15,6 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('posts','postController@show');
-
-
 Route::get('mypage', ['as' => 'secondPage','uses'=>'commentController@myFunc']);
+

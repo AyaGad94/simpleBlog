@@ -9,9 +9,6 @@
     <script src="main.js"></script>
 </head>
 <body>
-    
-
-
 <div>
 <fieldset>
   <legend>Post Info:</legend>
@@ -21,47 +18,31 @@
  <br>
  Date:{{$post->created_at}}
  <br>
- Image:{{$post->image}}
+ Image:<br> <img src="{{$post->image}}"/>
  </fieldset>
-
-
-
-
 </div>
-
 <div>
 <fieldset>
   <legend>comments:</legend>
- Name:{{$comment->user->name}}
- <br>
+@foreach($post->comments as $comment)
 Comment:{{$comment->comment}}
  <br>
+     Comment Creator:{{$comment->user->name}}
+     <br>
+    @endforeach
  </fieldset>
-
-</div>
-
-
-
-<div>
-<form method="post" action="/mypage">
+ <form method="post" action="/mypage">
 {{csrf_field()}}
-Title :- <input type="text" name="title">
+Leave your comment:
 <br><br>
 Comment :- 
-<textarea name="comment "></textarea>
+<textarea name="comment"></textarea>
 <br>
 <br>
-Comment Creator
-<select class="form-control" name="user_id">
-@foreach ($users as $user)
-    <option value="{{$user->id}}">{{$user->name}}</option>
-@endforeach
-</select>
+Comment Creator :- <input type="text" name="name">
 <br>
 <input type="submit" value="Submit" class="btn btn-primary">
 </form>
-
 </div>
-
 </body>
 </html>
